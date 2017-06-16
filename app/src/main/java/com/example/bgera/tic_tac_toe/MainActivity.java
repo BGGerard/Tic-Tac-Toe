@@ -4,16 +4,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button b1 ,b2 ,b3 ,b4, b5,b6,b7,b8,b9;
-    int turn;
+    Button again;
+    TextView xview,oview,draw;
+    int turn, xn, on,drawn;
+
+    int xwin,owin;
+    boolean end = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        again=(Button) findViewById(R.id.again) ;
+        xview=(TextView)findViewById(R.id.xview);
+        draw=(TextView)findViewById(R.id.draw);
+        oview=(TextView)findViewById(R.id.oview);
 
         b1 =(Button) findViewById(R.id.b1);
         b2 =(Button) findViewById(R.id.b2);
@@ -26,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
         b9 =(Button) findViewById(R.id.b9);
 
         turn =1;
+        xn= 0;
+        on=0;
+        drawn=0;
+
+        xwin=0;
+        owin=0;
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,10 +179,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        again.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                end = false;
+                xwin=0;
+                owin=0;
+                b1.setText("");
+                b2.setText("");
+                b3.setText("");
+                b4.setText("");
+                b5.setText("");
+                b6.setText("");
+                b7.setText("");
+                b8.setText("");
+                b9.setText("");
+
+                b1.setEnabled(true);
+                b2.setEnabled(true);
+                b3.setEnabled(true);
+                b4.setEnabled(true);
+                b5.setEnabled(true);
+                b6.setEnabled(true);
+                b7.setEnabled(true);
+                b8.setEnabled(true);
+                b9.setEnabled(true);
+
+                endGame();
+
+            }
+        });
+
     }
     public void endGame(){
         String a,b,c,d,e,f,g,h,i;
-        boolean end = false;
         a=b1.getText().toString();
         b=b2.getText().toString();
         c=b3.getText().toString();
@@ -179,35 +225,59 @@ public class MainActivity extends AppCompatActivity {
 
         if (a.equals("X") && b.equals("X") && c.equals("X")){
             Toast.makeText(MainActivity.this,"Ganador: jugador X",Toast.LENGTH_LONG).show();
+            xn=xn+1;
+            xwin= 1;
+            xview.setText("X = "+ xn);
             end=true;
         }
         if (a.equals("X") && d.equals("X") && g.equals("X")){
             Toast.makeText(MainActivity.this,"Ganador: jugador X",Toast.LENGTH_LONG).show();
+            xn=xn+1;
+            xwin= 1;
+            xview.setText("X = "+ xn);
             end=true;
 
         }
         if (a.equals("X") && e.equals("X") && i.equals("X")){
             Toast.makeText(MainActivity.this,"Ganador: jugador X",Toast.LENGTH_LONG).show();
+            xn=xn+1;
+            xwin= 1;
+            xview.setText("X = "+ xn);
             end=true;
         }
         if (b.equals("X") && e.equals("X") && h.equals("X")){
             Toast.makeText(MainActivity.this,"Ganador: jugador X",Toast.LENGTH_LONG).show();
+            xn=xn+1;
+            xwin= 1;
+            xview.setText("X = "+ xn);
             end=true;
         }
         if (c.equals("X") && f.equals("X") && i.equals("X")){
             Toast.makeText(MainActivity.this,"Ganador: jugador X",Toast.LENGTH_LONG).show();
+            xn=xn+1;
+            xwin= 1;
+            xview.setText("X = "+ xn);
             end=true;
         }
         if (d.equals("X") && e.equals("X") && f.equals("X")){
             Toast.makeText(MainActivity.this,"Ganador: jugador X",Toast.LENGTH_LONG).show();
+            xn=xn+1;
+            xwin= 1;
+            xview.setText("X = "+ xn);
             end=true;
         }
         if (g.equals("X") && h.equals("X") && i.equals("X")){
             Toast.makeText(MainActivity.this,"Ganador: jugador X",Toast.LENGTH_LONG).show();
+            xn=xn+1;
+            xwin= 1;
+            xview.setText("X = "+ xn);
             end=true;
         }
         if (g.equals("X") && e.equals("X") && c.equals("X")){
             Toast.makeText(MainActivity.this,"Ganador: jugador X",Toast.LENGTH_LONG).show();
+            xn=xn+1;
+            xwin= 1;
+            xview.setText("X = "+ xn);
             end=true;
         }
 
@@ -217,36 +287,67 @@ public class MainActivity extends AppCompatActivity {
 
         if (a.equals("O") && b.equals("O") && c.equals("O")){
             Toast.makeText(MainActivity.this,"Ganador: jugador O",Toast.LENGTH_LONG).show();
+            on=on+1;
+            owin= 1;
+            oview.setText("O = "+ on);
             end=true;
         }
         if (a.equals("O") && d.equals("O") && g.equals("O")){
             Toast.makeText(MainActivity.this,"Ganador: jugador O",Toast.LENGTH_LONG).show();
+            on=on+1;
+            owin= 1;
+            oview.setText("O = "+ on);
             end=true;
         }
         if (a.equals("O") && e.equals("O") && i.equals("O")){
             Toast.makeText(MainActivity.this,"Ganador: jugador O",Toast.LENGTH_LONG).show();
+            on=on+1;
+            owin= 1;
+            oview.setText("O = "+ on);
             end=true;
         }
         if (b.equals("O") && e.equals("O") && h.equals("O")){
             Toast.makeText(MainActivity.this,"Ganador: jugador O",Toast.LENGTH_LONG).show();
+            on=on+1;
+            owin= 1;
+            oview.setText("O = "+ on);
             end=true;
         }
         if (c.equals("O") && f.equals("O") && i.equals("O")){
             Toast.makeText(MainActivity.this,"Ganador: jugador O",Toast.LENGTH_LONG).show();
+            on=on+1;
+            owin= 1;
+            oview.setText("O = "+ on);
             end=true;
         }
         if (d.equals("O") && e.equals("O") && f.equals("O")){
             Toast.makeText(MainActivity.this,"Ganador: jugador O",Toast.LENGTH_LONG).show();
+            on=on+1;
+            owin= 1;
+            oview.setText("O = "+ on);
             end=true;
         }
         if (g.equals("O") && h.equals("O") && i.equals("O")){
             Toast.makeText(MainActivity.this,"Ganador: jugador O",Toast.LENGTH_LONG).show();
+            on=on+1;
+            owin= 1;
+            oview.setText("O = "+ on);
             end=true;
         }
         if (g.equals("O") && e.equals("O") && c.equals("O")){
             Toast.makeText(MainActivity.this,"Ganador: jugador O",Toast.LENGTH_LONG).show();
+            on=on+1;
+            owin= 1;
+            oview.setText("O = "+ on);
             end=true;
         }
+
+        if (a!="" && b!=""&& c!=""&& d!=""&& e!=""&& f!=""&& g!=""&& h!=""&&i!="" && xwin==0 && owin==0){
+            Toast.makeText(MainActivity.this,"Empate :v ",Toast.LENGTH_LONG).show();
+            drawn= drawn+1;
+            draw.setText("draw: "+ drawn);
+        }
+
         if (end) {
             b1.setEnabled(false);
             b2.setEnabled(false);
